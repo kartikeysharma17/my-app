@@ -35,18 +35,18 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea className="form-control" value={text}  onChange={handleOnChange} placeholder='Enter your text here' id="myBox" rows="8"></textarea>
         </div>
-        <button className="btn btn-danger mx-1" onClick={handleUpClick} >convert to uppercase</button>
-        <button className="btn btn-info mx-1" onClick={handleDownClick}>convert to lowercase</button>
-        <button className="btn btn-warning mx-1" onClick={handleclearClick} >clear text</button>
-        <button className="btn btn-success mx-1" onClick={handlecopyClick} >copy text</button>
+        <button className="btn btn-danger mx-1 my-1" disabled={text.length===0} onClick={handleUpClick} >convert to uppercase</button>
+        <button className="btn btn-info mx-1 my-1" disabled={text.length===0} onClick={handleDownClick}>convert to lowercase</button>
+        <button className="btn btn-warning mx-1 my-1" disabled={text.length===0} onClick={handleclearClick} >clear text</button>
+        <button className="btn btn-success mx-1 my-1" disabled={text.length===0} onClick={handlecopyClick} >copy text</button>
 
 
 
       </div>
       <div className="container my-3" >
         <h2>Your text summary</h2>
-        <p>{text.split(" ").length} words and {text.length} characters</p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
+        <p>{text.split(/\s+/).filter((element) => {return element.length!==0}).length} words and {text.length} characters</p>
+        <p>{0.008 * text.split("").filter((element) => {return element.length!==0}).length} Minutes read</p>
         <h2>Preview</h2>
         <p>{text.length>0?text:"Enter something in the textbox above to preview it here"}</p>
 
